@@ -1,0 +1,20 @@
+.container {
+  padding-top: 50px;
+  width: 20%;
+  float: left;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 20px;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow: auto;
+}
+
+/* @media (min-width: 1100px) {
+  .container {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 1100px;
+  }
+} */

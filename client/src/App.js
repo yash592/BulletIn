@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 const App = () =>
   <Router>
     <div>
-
       <Switch>
         <Route exact path="/" component={Home} />
       </Switch>
