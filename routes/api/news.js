@@ -4,6 +4,6 @@ const newsSearchController = require("../../controllers/newsSearchController");
 // Matches with "/api/nyt"
 router
   .route("/")
-  .get(newsSearchController.searchNews)
+  .get(newsSearchController.topNews)
 
 module.exports = router;
