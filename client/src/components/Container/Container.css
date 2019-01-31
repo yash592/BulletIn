@@ -1,15 +1,14 @@
-.container {
+.Container {
   padding-top: 50px;
-  width: 20%;
-  float: left;
-  height: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  padding: 20px;
-  justify-content: space-around;
-  align-content: flex-start;
-  overflow: auto;
+height: 100%;
+display: flex;
+flex-flow: row wrap;
+padding: 20px;
+justify-content: space-around;
+align-content: flex-start;
+overflow: auto;
 }
+
 
 /* @media (min-width: 1100px) {
   .container {

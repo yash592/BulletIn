@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {Button, Icon, Card, CardTitle } from 'react-materialize'
-import Container from "../components/Container";
+import Nav from "../components/Nav";
+import NewsCard from "../components/NewsCard";
+
 
 import API from "../utils/API"
 
@@ -24,16 +26,22 @@ class Home extends Component {
   render() {
     console.log(this.state);
     return (
+      <React.Fragment>
+      <div style={{height: '20%'}}>
+        <Nav />
+      </div>
+      <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
+      {this.state.news.map(news => (
+        <NewsCard
+          description={news.description}
+          image={news.urlToImage}
+          source={news.source.name}
+          title={news.title}
+          />
+      ))}
+      </div>
 
-      <Container style={{width: '40%'}}>
-          {this.state.news.map(news => (
-            <Card header={<CardTitle reveal image={news.urlToImage} waves='light' style={{fontSize:10}} />}
-              title={news.description} style={{fontSize:10}}
-              reveal={<p>{news.description}</p>}style={{fontSize:10}}>
-              <p><a href="#">This is a link</a></p>
-            </Card>
-          ))}
-      </Container>
+      </React.Fragment>
 
     )
   }
