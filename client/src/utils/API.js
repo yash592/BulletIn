@@ -8,5 +8,9 @@ export default {
   },
   getSavedArticles: function() {
     return axios.get("/api/saved")
+  },
+  saveNews: function(story) {
+    console.log('got to save news', story);
+    return axios.post("/api/saved", story).then(console.log('done'))
   }
 };
