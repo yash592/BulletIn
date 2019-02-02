@@ -3,33 +3,40 @@ import {Button, Icon, Card, CardTitle } from 'react-materialize'
 import Nav from "../components/Nav";
 import NewsCard from "../components/NewsCard";
 import Loading from "../components/Loading";
-
-
-
 import API from "../utils/API"
 
+// Home component where all the top headlines are rendered
+
 class Home extends Component {
+
+  constructor(props) {
+        super(props);
+    }
 
   state = {
     news: [],
     loading: true,
-
   }
+
   componentDidMount() {
     API.getArticles()
       .then(res => {
-        // console.log("RESULTSSSSSSSSSSS", res);
         this.setState({
           news: res.data,
           loading: false
         })
       })
-    API.getSavedArticles();
+  }
 
+  handleLikeClick = key => {
+    console.log('save clicked', key );
+    const story = this.state.news.find((stories) => stories.url === key)
+    console.log(story);
+    API.saveNews(story);
   }
 
   render() {
-    console.log(this.state);
+    // console.log(_id);
     return (
       (this.state.loading) ? <Loading /> :
       <React.Fragment>
@@ -37,14 +44,15 @@ class Home extends Component {
           <Nav />
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
-
-        {this.state.news.map(news => (
-          <NewsCard
-            key={news.publishedAt}
-            description={news.description}
-            image={news.urlToImage}
-            source={news.source.name}
-            title={news.title}
+          {this.state.news.map(news => (
+            <NewsCard
+              key={news.url}
+              _id={news.url}
+              description={news.description}
+              image={news.urlToImage}
+              source={news.source.name}
+              title={news.title}
+              onClick={this.handleLikeClick.bind(this, news.url)}
             />
         ))}
         </div>

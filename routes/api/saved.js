@@ -5,6 +5,7 @@ const newsSaveController = require('../../controllers/newsSaveController');
 
 router
   .route("/")
-  .get(newsSaveController.getSavedNews);
+  .get(newsSaveController.getSavedNews)
+  .post(newsSaveController.create)
 
 module.exports = router;

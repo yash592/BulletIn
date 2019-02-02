@@ -48,7 +48,12 @@ class NewsCard extends React.Component {
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
+    console.log('expanded');
   };
+
+  // saveClick = () => {
+  //   // console.log('save clicked');
+  // }
 
   render() {
     const { classes } = this.props;
@@ -72,7 +77,7 @@ class NewsCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
+          <IconButton aria-label="Add to favorites" onClick={this.props.onClick}>
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="Share">
