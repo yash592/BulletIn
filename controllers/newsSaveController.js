@@ -21,6 +21,8 @@ module.exports = {
       url: req.body.title,
       author:req.body.title
     };
-    db.saveNews.create(story).then(dbArticle => res.json(dbArticle))
+    db.saveNews.create(story)
+      .then(dbArticle => res.json(dbArticle))
+      .catch(err => res.status(422).json(err))
   }
 }
