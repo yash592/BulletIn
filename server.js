@@ -1,16 +1,40 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const mongoose = require("mongoose");
+var MongoClient = require('mongodb').MongoClient , assert = require('assert');
 const routes = require("./routes");
+const db = require('./models')
+var mongoose = require("mongoose");
 
 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// {useNewUrlParser: true}
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://localhost:27017/bulletIn', {useNewUrlParser: true});
+
+
+//   db.saveNews.create({
+//   title: 'news',
+//   image: 'img',
+//   description: 'desc',
+//   source: 'src',
+//   publishedAt: 'date',
+//   url: 'url',
+//   author: 'yash'
+// }).then(function(news) {
+//   console.log(news);
+// }).catch(function(err) {
+//   console.log(err);
+// })
+
+// db.saveNews.findAll({}).then(res => console.log(res))
 
 
 // Serve up static assets (usually on heroku)

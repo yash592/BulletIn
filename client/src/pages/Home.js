@@ -24,6 +24,7 @@ class Home extends Component {
           loading: false
         })
       })
+    API.getSavedArticles();
 
   }
 
@@ -32,23 +33,22 @@ class Home extends Component {
     return (
       (this.state.loading) ? <Loading /> :
       <React.Fragment>
-      <div style={{height: '20%'}}>
-        <Nav />
-      </div>
-      <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{height: '20%'}}>
+          <Nav />
+        </div>
+        <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
 
-      {this.state.news.map(news => (
-        <NewsCard
-          description={news.description}
-          image={news.urlToImage}
-          source={news.source.name}
-          title={news.title}
-          />
-      ))}
-      </div>
-
+        {this.state.news.map(news => (
+          <NewsCard
+            key={news.publishedAt}
+            description={news.description}
+            image={news.urlToImage}
+            source={news.source.name}
+            title={news.title}
+            />
+        ))}
+        </div>
       </React.Fragment>
-
     )
   }
 }
