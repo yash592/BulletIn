@@ -12,6 +12,7 @@ import ButtonUI from '@material-ui/core/Button';
 class Home extends Component {
 
   goTo(route) {
+  console.log(this.props.history, route);
   this.props.history.replace(`/${route}`)
   }
 
@@ -51,19 +52,31 @@ class Home extends Component {
     API.saveNews(story);
   }
 
-  navClick() {
-    console.log('nav clicked');
-    this.login.bind(this)
-  }
 
   render() {
-    console.log(this.props);
+    console.log('props', this.props.auth.userImage)
+    const { isAuthenticated } = this.props.auth;
+
     return (
       (this.state.loading) ? <Loading /> :
       <React.Fragment>
         <div style={{height: '20%'}}>
-          <Nav />
-          <ButtonUI color="black" onClick={this.login.bind(this, 'saved')}>Login</ButtonUI>
+          <Nav  />
+          <img src={this.props.auth.userImage}/>
+          {
+            !isAuthenticated() && (
+              <ButtonUI color="primary" onClick={this.login.bind(this)}>Login</ButtonUI>
+            )
+          }
+          {
+            isAuthenticated() && (
+              <ButtonUI color="primary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
+            )
+          }
+
+
+
+
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
           {this.state.news.map(news => (
