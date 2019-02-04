@@ -6,6 +6,8 @@ export default class Auth {
   accessToken;
   idToken;
   expiresAt;
+  userProfile;
+  userImage;
 
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
@@ -24,6 +26,7 @@ export default class Auth {
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.userInfo = this.userInfo.bind(this)
   }
 
   login() {
@@ -36,6 +39,7 @@ export default class Auth {
         this.setSession(authResult);
         console.log(authResult)
         this.getProfile()
+        history.replace('/home')
       } else if (err) {
         history.replace('/home');
         console.log(err);
@@ -52,11 +56,16 @@ export default class Auth {
     return this.idToken;
   }
 
+  userInfo() {
+    return this.userProfile
+  }
+
   getProfile() {
   this.auth0.client.userInfo(this.accessToken, (err, profile) => {
     if (profile) {
       console.log(profile);
-      this.userProfile = profile;
+      this.userProfile = profile.picture;
+
     }
     else {
       console.log(err)
@@ -67,12 +76,15 @@ export default class Auth {
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
+    console.log(authResult);
 
     // Set the time that the access token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
+    console.log('setting accesstoken', authResult.accessToken);
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
+    this.userImage = authResult.idTokenPayload.picture
 
     // navigate to the home route
     history.replace('/home');
@@ -81,7 +93,8 @@ export default class Auth {
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
+         this.setSession(authResult)
+         this.getProfile();
        } else if (err) {
          this.logout();
          console.log(err);
