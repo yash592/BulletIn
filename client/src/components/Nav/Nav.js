@@ -34,14 +34,7 @@ const Nav = (props) => {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             <img src = "https://i.imgur.com/SB0VyTQ.png" style={{width:'15%', height: '100%'}}/>
           </Typography>
-  
-          <Button color="black" style={{padding: 20}}>Politics</Button>
-          <Button color="black" style={{padding: 20}}>Business</Button>
-          <Button color="black" style={{padding: 20}}>Sports</Button>
-          <Button color="black" style={{padding: 20}}>Entertainment</Button>
-          <Button color="black" style={{padding: 20}}>Technology</Button>
-          <Button color="black" style={{padding: 20}}>Health</Button>
-          <Button color="black" style={{padding: 20}}>Login</Button>
+          
         </Toolbar>
       </AppBar>
     </div>
