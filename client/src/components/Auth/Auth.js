@@ -1,6 +1,8 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0config';
+import API from "../../utils/API"
+
 
 export default class Auth {
   accessToken;
@@ -37,6 +39,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        API.saveUser(authResult.idTokenPayload);
         history.replace('/')
       } else if (err) {
         history.replace('/');
