@@ -25,7 +25,7 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
-    // this.getProfile = this.getProfile.bind(this);
+    this.getProfile = this.getProfile.bind(this);
     this.userInfo = this.userInfo.bind(this)
   }
 
@@ -37,9 +37,9 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/')
+        history.replace('/saved')
       } else if (err) {
-        history.replace('/');
+        history.replace('/home');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -72,7 +72,7 @@ export default class Auth {
     this.userImage = authResult.idTokenPayload.picture
 
     // navigate to the home route
-    history.replace('/');
+    history.replace('/home');
 
   }
 
@@ -80,7 +80,7 @@ export default class Auth {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult)
-         // this.getProfile();
+         this.getProfile();
        } else if (err) {
          this.logout();
          console.log(err);
@@ -99,7 +99,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn');
 
     // navigate to the home route
-    history.replace('/');
+    history.replace('/home');
   }
 
   isAuthenticated() {

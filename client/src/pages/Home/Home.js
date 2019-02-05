@@ -6,8 +6,11 @@ import Loading from "../../components/Loading";
 import API from "../../utils/API"
 import ButtonUI from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
-import history from '../../history';
+// import history from '../../history';
 
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
 
 
 
@@ -17,7 +20,7 @@ class Home extends Component {
 
   goTo(route) {
   console.log(history, route);
-  this.props.history.replace(`/${route}`)
+  history.replace(`/${route}`)
   }
 
   login() {
