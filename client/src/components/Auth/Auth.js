@@ -37,9 +37,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        console.log(authResult)
-        this.getProfile()
-        history.replace('/home')
+        history.replace('/saved')
       } else if (err) {
         history.replace('/home');
         console.log(err);
@@ -60,19 +58,6 @@ export default class Auth {
     return this.userProfile
   }
 
-  getProfile() {
-  this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-    if (profile) {
-      console.log(profile);
-      this.userProfile = profile.picture;
-
-    }
-    else {
-      console.log(err)
-    }
-  });
-}
-
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
@@ -88,6 +73,7 @@ export default class Auth {
 
     // navigate to the home route
     history.replace('/home');
+
   }
 
   renewSession() {

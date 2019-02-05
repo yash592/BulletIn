@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 
-const Saved = () => (
-  <div>Saved page</div>
-)
+class Saved extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
+  render() {
+    return (
+      <div>saved page!!</div>
+    )
+  }
+}
 
 export default Saved;
