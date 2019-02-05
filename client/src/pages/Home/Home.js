@@ -5,6 +5,13 @@ import NewsCard from "../../components/NewsCard";
 import Loading from "../../components/Loading";
 import API from "../../utils/API"
 import ButtonUI from '@material-ui/core/Button';
+import { NavLink } from 'react-router-dom';
+// import history from '../../history';
+
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
 
 
 // Home component where all the top headlines are rendered
@@ -12,8 +19,8 @@ import ButtonUI from '@material-ui/core/Button';
 class Home extends Component {
 
   goTo(route) {
-  console.log(this.props.history, route);
-  this.props.history.replace(`/${route}`)
+  console.log(history, route);
+  history.replace(`/${route}`)
   }
 
   login() {
@@ -54,7 +61,7 @@ class Home extends Component {
 
 
   render() {
-    console.log('props', this.props.auth.userImage)
+    console.log('props', this.props.history)
     const { isAuthenticated } = this.props.auth;
 
     return (
@@ -62,6 +69,7 @@ class Home extends Component {
       <React.Fragment>
         <div style={{height: '20%'}}>
           <Nav  />
+          <ButtonUI color='red' onClick={this.goTo.bind(this, 'saved')} />
           <img src={this.props.auth.userImage}/>
           {
             !isAuthenticated() && (
@@ -73,10 +81,6 @@ class Home extends Component {
               <ButtonUI color="primary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
             )
           }
-
-
-
-
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
           {this.state.news.map(news => (
