@@ -16,7 +16,7 @@ import history from '../../history';
 class Home extends Component {
 
   goTo(route) {
-  console.log(history, route);
+  // console.log(history, route);
   this.props.history.replace(`/${route}`)
   }
 
@@ -58,7 +58,7 @@ class Home extends Component {
 
 
   render() {
-    console.log('props', this.props.history)
+    // console.log('props', this.props.history)
     const { isAuthenticated } = this.props.auth;
 
     return (

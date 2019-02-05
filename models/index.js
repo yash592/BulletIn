@@ -1,3 +1,5 @@
 module.exports = {
-  saveNews: require('./saveNews')
+  saveNews: require('./saveNews'),
+  users: require('./UserSchema')
+
 };

@@ -20,16 +20,14 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bulletIn', {useNewUrlParser: true});
 
 
-//   db.saveNews.create({
-//   title: 'news',
-//   image: 'img',
-//   description: 'desc',
-//   source: 'src',
-//   publishedAt: 'date',
-//   url: 'url',
-//   author: 'yash'
-// }).then(function(news) {
-//   console.log(news);
+// db.users.create({
+//     name: "String",
+//     email: "String",
+//     authID: "String",
+//     picture: "String",
+//     savedNews: []
+// }).then(function(user) {
+//   console.log(user);
 // }).catch(function(err) {
 //   console.log(err);
 // })
