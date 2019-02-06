@@ -32,9 +32,9 @@ const Nav = (props) => {
       <AppBar position="static">
         <Toolbar style={{backgroundColor: 'white'}}>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            <img src = "https://i.imgur.com/SB0VyTQ.png" style={{width:'15%', height: '100%'}}/>
+            <img src = "https://i.imgur.com/SB0VyTQ.png" style={{width:'5%', height: '100%'}}/>
           </Typography>
-          
+
         </Toolbar>
       </AppBar>
     </div>

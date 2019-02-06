@@ -7,8 +7,8 @@ import API from "../../utils/API"
 import ButtonUI from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 import history from '../../history';
-
-
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 
 // Home component where all the top headlines are rendered
@@ -61,18 +61,13 @@ class Home extends Component {
     // console.log('props', this.props.history)
     const { isAuthenticated } = this.props.auth;
 
+
     return (
       (this.state.loading) ? <Loading /> :
       <React.Fragment>
-        <div style={{height: '20%'}}>
+        <div style={{height: '35%'}}>
           <Nav  />
-          <ButtonUI color='red' onClick={this.goTo.bind(this, 'saved')} />
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <img src={this.props.auth.userImage} style={{width: 150, height: 150, borderRadius: 100}}/>
-          </div>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 44, color: '#757575'}}>Welcome back {this.props.auth.name}! </p>
-          </div>
+
           {
             !isAuthenticated() && (
               <ButtonUI color="primary" onClick={this.login.bind(this)}>Login</ButtonUI>
@@ -80,9 +75,25 @@ class Home extends Component {
           }
           {
             isAuthenticated() && (
-              <ButtonUI color="primary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
+              <div style={{marginTop: '2%'}}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <img src={this.props.auth.userImage} style={{width: 150, height: 150, borderRadius: 100}}/>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 44, color: 'black'}}>Welcome back {this.props.auth.name}! </p>
+
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                <ButtonUI color="secondary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
+                </div>
+              </div>
+
+              // <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}> </ButtonUI>
             )
           }
+
+
+
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
           {this.state.news.map(news => (
