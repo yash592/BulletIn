@@ -5,6 +5,6 @@ router
   .route("/")
   .get(userSaveController.getSavedUsers)
   .post(userSaveController.create)
-  .post(userSaveController.update)
+
 
 module.exports = router;
