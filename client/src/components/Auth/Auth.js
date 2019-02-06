@@ -10,6 +10,7 @@ export default class Auth {
   expiresAt;
   userProfile;
   userImage;
+  name;
 
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
@@ -72,7 +73,8 @@ export default class Auth {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
-    this.userImage = authResult.idTokenPayload.picture
+    this.userImage = authResult.idTokenPayload.picture;
+    this.name = authResult.idTokenPayload.name.split(' ', 1)
 
     // navigate to the home route
     history.replace('/');

@@ -67,7 +67,12 @@ class Home extends Component {
         <div style={{height: '20%'}}>
           <Nav  />
           <ButtonUI color='red' onClick={this.goTo.bind(this, 'saved')} />
-          <img src={this.props.auth.userImage}/>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <img src={this.props.auth.userImage} style={{width: 150, height: 150, borderRadius: 100}}/>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 44, color: '#757575'}}>Welcome back {this.props.auth.name}! </p>
+          </div>
           {
             !isAuthenticated() && (
               <ButtonUI color="primary" onClick={this.login.bind(this)}>Login</ButtonUI>
