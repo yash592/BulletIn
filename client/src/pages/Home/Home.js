@@ -82,9 +82,15 @@ class Home extends Component {
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                   <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 44, color: 'black'}}>Welcome back {this.props.auth.name}! </p>
 
+
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                 <ButtonUI color="secondary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
+
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved </ButtonUI>
+
                 </div>
               </div>
 
