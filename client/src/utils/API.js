@@ -6,6 +6,9 @@ export default {
   getArticles: function() {
     return axios.get("/api/news");
   },
+  summarize: function() {
+    return axios.get("/api/summary");
+  },
   getSavedArticles: function() {
     return axios.get("/api/saved")
   },

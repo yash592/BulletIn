@@ -20,21 +20,6 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bulletIn', {useNewUrlParser: true});
 
 
-// db.users.create({
-//     name: "String",
-//     email: "String",
-//     authID: "String",
-//     picture: "String",
-//     savedNews: []
-// }).then(function(user) {
-//   console.log(user);
-// }).catch(function(err) {
-//   console.log(err);
-// })
-
-// db.saveNews.findAll({}).then(res => console.log(res))
-
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
