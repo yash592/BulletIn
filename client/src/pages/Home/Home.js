@@ -42,25 +42,30 @@ class Home extends Component {
         })
       });
 
-      const { renewSession } = this.props.auth;
+    const { renewSession } = this.props.auth;
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
+
+    API.summarize()
+      .then(res=> {
+        console.log(res.data);
+      })
   }
 
   handleLikeClick = key => {
     console.log('save clicked', key );
-    const story = this.state.news.find((stories) => stories.url === key)
-    console.log(story);
-    API.saveNews(story);
+    // const story = this.state.news.find((stories) => stories.url === key)
+    // console.log(story);
+    // API.saveNews(story);
+
   }
 
 
   render() {
-    // console.log('props', this.props.history)
+    // console.log('props', this.state.news)
     const { isAuthenticated } = this.props.auth;
-
 
     return (
       (this.state.loading) ? <Loading /> :

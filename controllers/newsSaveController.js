@@ -11,7 +11,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    console.log('req', req.body.title);
+    // console.log('req', req.body.title);
     const story = {
       title: req.body.title,
       image: req.body.title,
