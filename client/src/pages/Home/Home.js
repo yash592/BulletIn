@@ -48,17 +48,19 @@ class Home extends Component {
       renewSession();
     }
 
-    API.summarize()
-      .then(res=> {
-        console.log(res.data);
-      })
+
   }
 
   handleLikeClick = key => {
     console.log('save clicked', key );
-    // const story = this.state.news.find((stories) => stories.url === key)
-    // console.log(story);
-    // API.saveNews(story);
+    const story = this.state.news.find((stories) => stories.url === key)
+    console.log(story);
+    API.saveNews(story);
+  }
+
+  handleDetailClick = link => {
+    console.log('hadle detail', link);
+    API.summarize(link)
 
   }
 
@@ -103,8 +105,6 @@ class Home extends Component {
             )
           }
 
-
-
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
           {this.state.news.map(news => (
@@ -115,7 +115,8 @@ class Home extends Component {
               image={news.urlToImage}
               source={news.source.name}
               title={news.title}
-              onClick={this.handleLikeClick.bind(this, news.url)}
+              onClick={this.handleDetailClick.bind(this, news.url)}
+              // onClick={this.expandButton.bind(this, news.url)}
             />
         ))}
         </div>

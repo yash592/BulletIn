@@ -6,7 +6,8 @@ export default {
   getArticles: function() {
     return axios.get("/api/news");
   },
-  summarize: function() {
+  summarize: function(link) {
+    console.log('summmarize', link);
     return axios.get("/api/summary");
   },
   getSavedArticles: function() {
