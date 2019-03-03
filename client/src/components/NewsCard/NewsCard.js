@@ -51,6 +51,10 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
+  testClick = () => {
+    console.log('test click');
+  }
+
   // saveClick = () => {
   //   // console.log('save clicked');
   // }
@@ -91,7 +95,9 @@ class NewsCard extends React.Component {
             aria-expanded={this.state.expanded}
             aria-label="Show more"
           >
-            <ExpandMoreIcon />
+            <ExpandMoreIcon
+              onClick={this.testClick}
+            />
           </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
