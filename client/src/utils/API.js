@@ -1,4 +1,5 @@
 import axios from "axios";
+const unirest = require('unirest')
 
 
 export default {
@@ -8,7 +9,10 @@ export default {
   },
   summarize: function(link) {
     console.log('summmarize', link);
-    return axios.get("/api/summary");
+    return unirest.post("https://textanalysis-text-summarization.p.rapidapi.com/text-summarizer")
+   .header("X-RapidAPI-Key", "ykuhaOwNktmshrawXHrZYZyBNzuXp1WgLSajsnL5opgjvLJXud")
+   .header("Content-Type", "application/json")
+   .send({"url":link,"text":"","sentnum":8})
   },
   getSavedArticles: function() {
     return axios.get("/api/saved")

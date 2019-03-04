@@ -30,6 +30,7 @@ class Home extends Component {
 
   state = {
     news: [],
+    summary:[],
     loading: true,
   }
 
@@ -61,6 +62,14 @@ class Home extends Component {
   handleDetailClick = link => {
     console.log('hadle detail', link);
     API.summarize(link)
+      .then((res) => {
+        console.log(res.body);
+        this.setState({
+          summary: res.body
+        })
+        console.log(this.state.summary);
+      })
+
 
   }
 
@@ -115,8 +124,9 @@ class Home extends Component {
               image={news.urlToImage}
               source={news.source.name}
               title={news.title}
-              onClick={this.handleDetailClick.bind(this, news.url)}
-              // onClick={this.expandButton.bind(this, news.url)}
+              summary={this.state.summary}
+              onExpand={this.handleDetailClick.bind(this, news.url)}
+              onSave={this.handleDetailClick.bind(this, news.url)}
             />
         ))}
         </div>

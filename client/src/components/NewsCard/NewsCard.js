@@ -81,7 +81,7 @@ class NewsCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={this.props.onClick}>
+          <IconButton aria-label="Add to favorites" onClick={this.props.onExpand}>
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="Share">
@@ -96,7 +96,7 @@ class NewsCard extends React.Component {
             aria-label="Show more"
           >
             <ExpandMoreIcon
-              onClick={this.testClick}
+              onClick={this.props.onExpand}
             />
           </IconButton>
         </CardActions>
@@ -104,7 +104,7 @@ class NewsCard extends React.Component {
           <CardContent>
             <Typography paragraph>Gist</Typography>
             <Typography paragraph>
-              This paragraph will have a summary of the article(Coming soon!)
+              {Object.values(this.props.summary)}
             </Typography>
 
           </CardContent>
