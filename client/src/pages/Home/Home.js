@@ -15,6 +15,17 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 class Home extends Component {
 
+  constructor(props) {
+    super()
+    this.state = {
+      news: [],
+      summary:[],
+      // summaryUrl: '',
+      loading: true,
+    }
+
+  }
+
   goTo(route) {
   // console.log(history, route);
   this.props.history.replace(`/${route}`)
@@ -28,11 +39,7 @@ class Home extends Component {
     this.props.auth.logout();
   }
 
-  state = {
-    news: [],
-    summary:[],
-    loading: true,
-  }
+
 
   componentDidMount() {
     API.getArticles()
@@ -42,14 +49,22 @@ class Home extends Component {
           loading: false
         })
       });
-
     const { renewSession } = this.props.auth;
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
+  }
 
+  componentDidUpdate(nextState, prevState){
+    console.log(prevState);
+    console.log(this.state);
 
+    if(prevState !== this.state) {
+      return  true;
+    }
+    return false;
+    // console.log(snapshot);
   }
 
   handleLikeClick = key => {
@@ -60,17 +75,16 @@ class Home extends Component {
   }
 
   handleDetailClick = link => {
-    console.log('hadle detail', link);
+    // console.log('hadle detail', link);
     API.summarize(link)
       .then((res) => {
-        console.log(res.body);
+        // console.log(res.body);
         this.setState({
-          summary: res.body
+          summary: res.body,
+          summaryUrl: link
         })
-        console.log(this.state.summary);
+        console.log(this.state.summaryUrl, link);
       })
-
-
   }
 
 
@@ -124,7 +138,7 @@ class Home extends Component {
               image={news.urlToImage}
               source={news.source.name}
               title={news.title}
-              summary={this.state.summary}
+              summary={news.url === this.state.summaryUrl ? this.state.summary: ''}
               onExpand={this.handleDetailClick.bind(this, news.url)}
               onSave={this.handleDetailClick.bind(this, news.url)}
             />

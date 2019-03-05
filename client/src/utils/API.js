@@ -8,7 +8,7 @@ export default {
     return axios.get("/api/news");
   },
   summarize: function(link) {
-    console.log('summmarize', link);
+    // console.log('summmarize', link);
     return unirest.post("https://textanalysis-text-summarization.p.rapidapi.com/text-summarizer")
    .header("X-RapidAPI-Key", "ykuhaOwNktmshrawXHrZYZyBNzuXp1WgLSajsnL5opgjvLJXud")
    .header("Content-Type", "application/json")

@@ -51,14 +51,6 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
-  testClick = () => {
-    console.log('test click');
-  }
-
-  // saveClick = () => {
-  //   // console.log('save clicked');
-  // }
-
   render() {
     const { classes } = this.props;
     // console.log(this.props);
