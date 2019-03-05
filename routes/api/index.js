@@ -9,7 +9,7 @@ const summaryRoutes = require('./summary');
 router.use('/news', newsSearchRoutes);
 router.use('/saved', savedNewsRoutes);
 router.use('/user', saveUserRoutes);
-router.use('/summary', summaryRoutes);
+// router.use('/summary', summaryRoutes);
 
 
 module.exports = router;
