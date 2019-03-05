@@ -23,7 +23,6 @@ class Home extends Component {
       // summaryUrl: '',
       loading: true,
     }
-
   }
 
   goTo(route) {
@@ -39,7 +38,7 @@ class Home extends Component {
     this.props.auth.logout();
   }
 
-
+  // API call to display trending news
 
   componentDidMount() {
     API.getArticles()
@@ -49,6 +48,7 @@ class Home extends Component {
           loading: false
         })
       });
+
     const { renewSession } = this.props.auth;
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
@@ -56,16 +56,16 @@ class Home extends Component {
     }
   }
 
-  componentDidUpdate(nextState, prevState){
-    console.log(prevState);
-    console.log(this.state);
-
-    if(prevState !== this.state) {
-      return  true;
-    }
-    return false;
-    // console.log(snapshot);
-  }
+  // componentDidUpdate(nextState, prevState) {
+  //   console.log(prevState);
+  //   console.log(this.state);
+  //
+  //   if(prevState !== this.state) {
+  //     return  true;
+  //   }
+  //   return false;
+  //   // console.log(snapshot);
+  // }
 
   handleLikeClick = key => {
     console.log('save clicked', key );

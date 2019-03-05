@@ -11,6 +11,6 @@ module.exports = {
     .end(function (result) {
     console.log(result.body.sentences)
     res.json(result.body.sentences)
-});
+    });
   }
 }
