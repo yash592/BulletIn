@@ -44,6 +44,7 @@ const styles = theme => ({
 });
 
 class NewsCard extends React.Component {
+
   state = { expanded: false };
 
   handleExpandClick = () => {
@@ -55,30 +56,12 @@ class NewsCard extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.summary);
-    // const summs = this.props.summary.map((res) => {
-    //
-    // })
-    // console.log(summs);
-    // const data = Array.from(this.props.summary);
-    // // console.log(data);
-    // const gist = data.map((sums) => {
-    //   <li>sums</li>
-    // })
-    // console.log(gist);
-    // // const gist = this.props.summary
-    // // console.log(gist);
-    // // const sum = gist.map((d) => {
-    // //   <li>{d}</li>
-    // // });
-    // // const sum = this.props.summary.map((gist) => {
-    // //   console.log(gist);
-    // // })
 
+    console.log(this.props.summary);
+  
     return (
       <Card className={classes.card} style={{margin: 20}}>
         <CardHeader
-
           title={this.props.title}
           subheader={this.props.source}
         />
@@ -114,7 +97,7 @@ class NewsCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Gist</Typography>
+            <Typography paragraph><a href={this.props._id} target='_blank'>{this.props._id}</a></Typography>
             <Typography paragraph>
             {this.props.summary}
             </Typography>
