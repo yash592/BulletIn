@@ -52,9 +52,13 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
+
+
   render() {
     const { classes } = this.props;
-    // console.log(this.props);
+
+    console.log(this.props.summary);
+  
     return (
       <Card className={classes.card} style={{margin: 20}}>
         <CardHeader
@@ -95,7 +99,7 @@ class NewsCard extends React.Component {
           <CardContent>
             <Typography paragraph><a href={this.props._id} target='_blank'>{this.props._id}</a></Typography>
             <Typography paragraph>
-              {Object.values(this.props.summary)}
+            {this.props.summary}
             </Typography>
 
           </CardContent>
