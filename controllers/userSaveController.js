@@ -1,8 +1,6 @@
 const axios = require('axios');
 const db = require('../models');
 
-// console.log(props);
-
 module.exports = {
   getSavedUsers: function(req, res) {
     console.log('got to getsaveduser');

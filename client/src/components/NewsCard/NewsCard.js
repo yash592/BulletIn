@@ -44,6 +44,7 @@ const styles = theme => ({
 });
 
 class NewsCard extends React.Component {
+
   state = { expanded: false };
 
   handleExpandClick = () => {
@@ -54,11 +55,9 @@ class NewsCard extends React.Component {
   render() {
     const { classes } = this.props;
     // console.log(this.props);
-
     return (
       <Card className={classes.card} style={{margin: 20}}>
         <CardHeader
-
           title={this.props.title}
           subheader={this.props.source}
         />
@@ -94,7 +93,7 @@ class NewsCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Gist</Typography>
+            <Typography paragraph><a href={this.props._id} target='_blank'>{this.props._id}</a></Typography>
             <Typography paragraph>
               {Object.values(this.props.summary)}
             </Typography>
