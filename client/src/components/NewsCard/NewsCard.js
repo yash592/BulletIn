@@ -51,9 +51,29 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
+
+
   render() {
     const { classes } = this.props;
-    // console.log(this.props);
+    console.log(this.props.summary);
+    // const summs = this.props.summary.map((res) => {
+    //
+    // })
+    // console.log(summs);
+    // const data = Array.from(this.props.summary);
+    // // console.log(data);
+    // const gist = data.map((sums) => {
+    //   <li>sums</li>
+    // })
+    // console.log(gist);
+    // // const gist = this.props.summary
+    // // console.log(gist);
+    // // const sum = gist.map((d) => {
+    // //   <li>{d}</li>
+    // // });
+    // // const sum = this.props.summary.map((gist) => {
+    // //   console.log(gist);
+    // // })
 
     return (
       <Card className={classes.card} style={{margin: 20}}>
@@ -96,7 +116,7 @@ class NewsCard extends React.Component {
           <CardContent>
             <Typography paragraph>Gist</Typography>
             <Typography paragraph>
-              {Object.values(this.props.summary)}
+            {this.props.summary}
             </Typography>
 
           </CardContent>

@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 import history from '../../history';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
-
+import _ from 'lodash'
 
 // Home component where all the top headlines are rendered
 
@@ -20,7 +20,7 @@ class Home extends Component {
     this.state = {
       news: [],
       summary:[],
-      // summaryUrl: '',
+      summaryUrl: '',
       loading: true,
     }
 
@@ -56,16 +56,16 @@ class Home extends Component {
     }
   }
 
-  componentDidUpdate(nextState, prevState){
-    console.log(prevState);
-    console.log(this.state);
-
-    if(prevState !== this.state) {
-      return  true;
-    }
-    return false;
-    // console.log(snapshot);
-  }
+  // componentDidUpdate(nextState, prevState){
+  //   console.log(prevState);
+  //   console.log(this.state);
+  //
+  //   if(prevState !== this.state) {
+  //     return  true;
+  //   }
+  //   return false;
+  //   // console.log(snapshot);
+  // }
 
   handleLikeClick = key => {
     console.log('save clicked', key );
@@ -78,12 +78,14 @@ class Home extends Component {
     // console.log('hadle detail', link);
     API.summarize(link)
       .then((res) => {
-        // console.log(res.body);
+        // console.log(res.raw_body.sentences);
+        const gist = _.map(res.raw_body.sentences)
+        // console.log(gist);
         this.setState({
-          summary: res.body,
+          summary: gist,
           summaryUrl: link
         })
-        console.log(this.state.summaryUrl, link);
+        // console.log(this.state.summaryUrl, link);
       })
   }
 
