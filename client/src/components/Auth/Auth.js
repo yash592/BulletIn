@@ -1,7 +1,9 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0config';
+import { AUTH0_CONFIG } from '../../auth0';
 import API from "../../utils/API"
+
+
 
 
 export default class Auth {
@@ -12,10 +14,12 @@ export default class Auth {
   userImage;
   name;
 
+
+
   auth0 = new auth0.WebAuth({
-    domain: AUTH_CONFIG.domain,
-    clientID: AUTH_CONFIG.clientId,
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    domain: AUTH0_CONFIG.domain,
+    clientID: AUTH0_CONFIG.clientId,
+    redirectUri: AUTH0_CONFIG.callbackUrl,
     responseType: 'token id_token',
     scope: 'openid profile'
   })
