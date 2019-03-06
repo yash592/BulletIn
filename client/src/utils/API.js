@@ -12,7 +12,7 @@ export default {
     return unirest.post("https://textanalysis-text-summarization.p.rapidapi.com/text-summarizer")
    .header("X-RapidAPI-Key", "ykuhaOwNktmshrawXHrZYZyBNzuXp1WgLSajsnL5opgjvLJXud")
    .header("Content-Type", "application/json")
-   .send({"url":link,"text":"","sentnum":8})
+   .send({"url":link,"text":"","sentnum":5})
   },
   getSavedArticles: function() {
     return axios.get("/api/saved")
