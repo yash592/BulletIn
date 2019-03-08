@@ -16,6 +16,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Loading from "../Loading";
+
 
 const styles = theme => ({
   card: {
@@ -45,7 +47,7 @@ const styles = theme => ({
 
 class NewsCard extends React.Component {
 
-  state = { expanded: false };
+  state = { expanded: false, gistLoading: true };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -57,8 +59,9 @@ class NewsCard extends React.Component {
   render() {
     const { classes } = this.props;
 
-    console.log(this.props.summary);
-  
+    // console.log(this.props);
+    console.log(this.state.gistLoading);
+
     return (
       <Card className={classes.card} style={{margin: 20}}>
         <CardHeader
@@ -80,7 +83,7 @@ class NewsCard extends React.Component {
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="Share">
-            <ShareIcon />
+            
           </IconButton>
           <IconButton
             className={classnames(classes.expand, {
@@ -96,12 +99,13 @@ class NewsCard extends React.Component {
           </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+
           <CardContent>
+
             <Typography paragraph><a href={this.props._id} target='_blank'>{this.props._id}</a></Typography>
             <Typography paragraph>
             {this.props.summary}
             </Typography>
-
           </CardContent>
         </Collapse>
       </Card>
