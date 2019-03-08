@@ -1,5 +1,7 @@
 # Bulletin
 
+https://bulletinio.herokuapp.com/
+
 ### A simple news app showing trending news based on topics/Countries and a brief gist of the article built on a slick UI. Perfect for on-the-go news as well as not falling for clickbaits.
 
 
