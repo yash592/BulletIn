@@ -21,7 +21,8 @@ class Home extends Component {
       news: [],
       summary:[],
       summaryUrl: '',
-      loading: true,
+      pageLoading: true,
+      gistLoading: true
     }
   }
 
@@ -45,7 +46,7 @@ class Home extends Component {
       .then(res => {
         this.setState({
           news: res.data,
-          loading: false
+          pageLoading: false
         })
       });
 
@@ -74,7 +75,8 @@ class Home extends Component {
         // console.log(gist);
         this.setState({
           summary: gist,
-          summaryUrl: link
+          summaryUrl: link,
+          // gistLoading: false
         })
         // console.log(this.state.summaryUrl, link);
       })
@@ -86,7 +88,7 @@ class Home extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      (this.state.loading) ? <Loading /> :
+      (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
         <div style={{height: '35%'}}>
           <Nav  />
@@ -134,6 +136,7 @@ class Home extends Component {
               summary={news.url === this.state.summaryUrl ? this.state.summary: ''}
               onExpand={this.handleDetailClick.bind(this, news.url)}
               onSave={this.handleDetailClick.bind(this, news.url)}
+              gistLoading={this.state.gistLoading}
             />
         ))}
         </div>
