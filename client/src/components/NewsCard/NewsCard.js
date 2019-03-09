@@ -78,7 +78,7 @@ class NewsCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={this.props.onExpand}>
+          <IconButton aria-label="Add to favorites" onClick={this.props.onSave}>
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="Share">
