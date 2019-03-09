@@ -9,7 +9,9 @@ import { NavLink } from 'react-router-dom';
 import history from '../../history';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import _ from 'lodash'
+import _ from 'lodash';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Home component where all the top headlines are rendered
 
@@ -57,6 +59,15 @@ class Home extends Component {
     }
   }
 
+  notify = () => {
+    console.log('gg');
+
+
+     toast.warning("Bookmarked!", {
+       position: toast.POSITION.TOP_RIGHT
+     });
+}
+
 
 
   handleLikeClick = key => {
@@ -64,6 +75,8 @@ class Home extends Component {
     const story = this.state.news.find((stories) => stories.url === key)
     console.log(story);
     API.saveNews(story);
+    this.notify();
+
   }
 
   handleDetailClick = link => {
@@ -116,6 +129,7 @@ class Home extends Component {
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                 <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved </ButtonUI>
 
+
                 </div>
               </div>
 
@@ -135,10 +149,11 @@ class Home extends Component {
               title={news.title}
               summary={news.url === this.state.summaryUrl ? this.state.summary: ''}
               onExpand={this.handleDetailClick.bind(this, news.url)}
-              onSave={this.handleDetailClick.bind(this, news.url)}
+              onSave={this.handleLikeClick.bind(this, news.url)}
               gistLoading={this.state.gistLoading}
             />
         ))}
+        <ToastContainer autoClose={2000} />
         </div>
       </React.Fragment>
     )
