@@ -9,7 +9,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    console.log('got to user create', req.body);
+    console.log('got to user create', req.body, 'props', this.props);
     const user = {
       name: req.body.nickname,
       email: req.body.name,

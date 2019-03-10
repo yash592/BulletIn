@@ -24,5 +24,9 @@ export default {
   saveUser: function(user) {
     console.log(user);
     return axios.post("/api/user", user).then(console.log('done'))
+  },
+  getSavedUsers: function() {
+    console.log(this.props);
+    return axios.get("/api/user")
   }
 };

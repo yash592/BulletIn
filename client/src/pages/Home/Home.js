@@ -50,6 +50,7 @@ class Home extends Component {
           news: res.data,
           pageLoading: false
         })
+        console.log(this.props.auth);
       });
 
     const { renewSession } = this.props.auth;
@@ -61,8 +62,6 @@ class Home extends Component {
 
   notify = () => {
     console.log('gg');
-
-
      toast.warning("Bookmarked!", {
        position: toast.POSITION.TOP_RIGHT
      });
@@ -74,7 +73,11 @@ class Home extends Component {
     console.log('save clicked', key );
     const story = this.state.news.find((stories) => stories.url === key)
     console.log(story);
-    API.saveNews(story);
+    API.getSavedUsers()
+      .then((res) => {
+        console.log(res.data._id);
+      })
+    // API.saveNews(story);
     this.notify();
 
   }
