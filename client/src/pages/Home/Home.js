@@ -68,15 +68,16 @@ class Home extends Component {
 }
 
 
-
-  handleLikeClick = key => {
-    console.log('save clicked', key );
+  const user = this.props.auth.auth0.baseOptions.clientID
+  handleLikeClick = (key, userID) => {
+    console.log('save clicked', key, userID );
     const story = this.state.news.find((stories) => stories.url === key)
     console.log(story);
     API.getSavedUsers()
       .then((res) => {
-        console.log(res.data._id);
+        console.log(res.data);
       })
+      console.log()
     // API.saveNews(story);
     this.notify();
 
