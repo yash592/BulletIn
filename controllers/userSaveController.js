@@ -21,8 +21,16 @@ module.exports = {
       .then(dbArticle => res.json(dbArticle))
   },
   update: function(req, res) {
-    console.log('got to user update');
-    db.users.update()
+    console.log('got to user update', req.body, req.params.id);
+    db.users.update(
+      { authID: req.params.id},
+      {$push :{
+        savedNews: {
+        news: req.body
+        }
+      }
+    }
+)
       .then(userUpdate => console.log(userUpdate))
   }
 }
