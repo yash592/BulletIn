@@ -8,5 +8,9 @@ router
   .get(userSaveController.getSavedUsers)
   .post(userSaveController.create)
 
+router
+  .route("/:id")
+  .put(userSaveController.update)
+
 
 module.exports = router;

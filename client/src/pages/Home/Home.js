@@ -23,6 +23,7 @@ class Home extends Component {
       news: [],
       summary:[],
       summaryUrl: '',
+      userID: '',
       pageLoading: true,
       gistLoading: true
     }
@@ -48,17 +49,36 @@ class Home extends Component {
       .then(res => {
         this.setState({
           news: res.data,
-          pageLoading: false
+          pageLoading: false,
+          // userID: this.props.auth.auth0.baseOptions.clientID
         })
-        console.log(this.props.auth);
+        console.log(this.state);
       });
 
-    const { renewSession } = this.props.auth;
+      API.getSavedUsers()
+        .then((res) => {
+          // console.log(res.data, this.props.auth.auth0.baseOptions.clientID);
+          res.data.forEach((el) => {
+            // console.log(el.authID);
+            if(el.authID ===  this.props.auth.auth0.baseOptions.clientID){
+              this.setState({
+                userID: el.authID
+              })
+            } else {
+              console.log('notfound');
+            }
+          })
+          console.log(this.state);
+        })
 
+
+    const { renewSession } = this.props.auth;
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
   }
+
+
 
   notify = () => {
     console.log('gg');
@@ -67,18 +87,14 @@ class Home extends Component {
      });
 }
 
-
-  const user = this.props.auth.auth0.baseOptions.clientID
-  handleLikeClick = (key, userID) => {
-    console.log('save clicked', key, userID );
+  handleLikeClick(key)  {
+    console.log(this.state.userID);
+    console.log('save clicked', key );
     const story = this.state.news.find((stories) => stories.url === key)
     console.log(story);
-    API.getSavedUsers()
-      .then((res) => {
-        console.log(res.data);
-      })
-      console.log()
-    // API.saveNews(story);
+
+    API.saveUserNews(story, this.state.userID);
+
     this.notify();
 
   }
@@ -103,8 +119,9 @@ class Home extends Component {
   render() {
     // console.log('props', this.state.news)
     const { isAuthenticated } = this.props.auth;
-
+    // const userr = this.state.userID
     return (
+
       (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
         <div style={{height: '35%'}}>
