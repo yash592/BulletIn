@@ -13,6 +13,7 @@ export default class Auth {
   userProfile;
   userImage;
   name;
+  id;
 
 
 
@@ -24,6 +25,8 @@ export default class Auth {
     scope: 'openid profile'
   })
 
+
+
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -32,7 +35,6 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
-    // this.getProfile = this.getProfile.bind(this);
     this.userInfo = this.userInfo.bind(this)
   }
 
@@ -70,15 +72,14 @@ export default class Auth {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
     console.log(authResult);
-
-    // Set the time that the access token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-    console.log('setting accesstoken', authResult.accessToken);
-    this.accessToken = authResult.accessToken;
+    this.accessToken = authResult.accessToken
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
     this.userImage = authResult.idTokenPayload.picture;
-    this.name = authResult.idTokenPayload.name.split(' ', 1)
+    this.name = authResult.idTokenPayload.name.split(' ', 1);
+    this.id = authResult.idTokenPayload.nickname;
+
 
     // navigate to the home route
     history.replace('/');
@@ -89,7 +90,8 @@ export default class Auth {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult)
-         // this.getProfile();
+         console.log('authresult', authResult);
+
        } else if (err) {
          this.logout();
          console.log(err);

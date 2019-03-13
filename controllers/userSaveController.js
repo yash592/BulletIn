@@ -23,14 +23,18 @@ module.exports = {
   update: function(req, res) {
     console.log('got to user update', req.body, req.params.id);
     db.users.update(
-      { authID: req.params.id},
+      { name: req.params.id},
       {$push :{
         savedNews: {
         news: req.body
         }
       }
     }
-)
-      .then(userUpdate => console.log(userUpdate))
+  )
+  .then(userUpdate => console.log(userUpdate))
+  },
+  getUserSavedNews: function(req, res) {
+    db.users.findAll({})
+      .then(savedNews => res.json(savedNews))
   }
 }

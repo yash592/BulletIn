@@ -15,11 +15,7 @@ export default {
    .send({"url":link,"text":"","sentnum":5})
   },
   getSavedArticles: function() {
-    return axios.get("/api/saved")
-  },
-  saveNews: function(story, userID) {
-    console.log('got to save news', story, userID);
-    return axios.post("/api/saved", story, userID).then(console.log('done'))
+    return axios.get("/api/user")
   },
   saveUser: function(user) {
     console.log(user);
