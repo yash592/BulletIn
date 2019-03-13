@@ -6,6 +6,7 @@ const userSaveController = require('../../controllers/userSaveController');
 router
   .route("/")
   .get(userSaveController.getSavedUsers)
+  .get(userSaveController.getUserSavedNews)
   .post(userSaveController.create)
 
 router

@@ -18,15 +18,17 @@ import 'react-toastify/dist/ReactToastify.css';
 class Home extends Component {
 
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       news: [],
       summary:[],
       summaryUrl: '',
       userID: '',
+      user: props.auth.id, //
       pageLoading: true,
       gistLoading: true
     }
+    // console.log(this.state);
   }
 
   goTo(route) {
@@ -50,35 +52,15 @@ class Home extends Component {
         this.setState({
           news: res.data,
           pageLoading: false,
-          // userID: this.props.auth.auth0.baseOptions.clientID
+          user: this.props.auth.id
         })
         console.log(this.state);
       });
-
-      API.getSavedUsers()
-        .then((res) => {
-          // console.log(res.data, this.props.auth.auth0.baseOptions.clientID);
-          res.data.forEach((el) => {
-            // console.log(el.authID);
-            if(el.authID ===  this.props.auth.auth0.baseOptions.clientID){
-              this.setState({
-                userID: el.authID
-              })
-            } else {
-              console.log('notfound');
-            }
-          })
-          console.log(this.state);
-        })
-
-
     const { renewSession } = this.props.auth;
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
   }
-
-
 
   notify = () => {
     console.log('gg');
@@ -87,41 +69,35 @@ class Home extends Component {
      });
 }
 
-  handleLikeClick(key)  {
-    console.log(this.state.userID);
-    console.log('save clicked', key );
-    const story = this.state.news.find((stories) => stories.url === key)
-    console.log(story);
-
-    API.saveUserNews(story, this.state.userID);
-
-    this.notify();
-
+  handleLikeClick(key) {
+    console.log(this.props.isAuthenticated);
+    if(!this.state.user) {
+      this.login()
+    } else {
+      console.log('save clicked', key );
+      const story = this.state.news.find((stories) => stories.url === key)
+      console.log(story, this.state.user);
+      API.saveUserNews(story, this.state.user);
+      this.notify();
+    }
   }
 
   handleDetailClick = link => {
-    // console.log('hadle detail', link);
     API.summarize(link)
       .then((res) => {
-        // console.log(res.raw_body.sentences);
         const gist = _.map(res.raw_body.sentences)
-        // console.log(gist);
         this.setState({
           summary: gist,
           summaryUrl: link,
-          // gistLoading: false
         })
-        // console.log(this.state.summaryUrl, link);
       })
   }
 
 
   render() {
-    // console.log('props', this.state.news)
-    const { isAuthenticated } = this.props.auth;
-    // const userr = this.state.userID
-    return (
 
+    const { isAuthenticated } = this.props.auth;
+    return (
       (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
         <div style={{height: '35%'}}>
@@ -148,7 +124,7 @@ class Home extends Component {
 
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved </ButtonUI>
+                <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved</ButtonUI>
 
 
                 </div>
@@ -161,6 +137,7 @@ class Home extends Component {
         </div>
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
           {this.state.news.map(news => (
+
             <NewsCard
               key={news.url}
               _id={news.url}
