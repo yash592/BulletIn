@@ -25,9 +25,9 @@ module.exports = {
     db.users.update(
       { name: req.params.id},
       {$push :{
-        savedNews: {
-        news: req.body
-        }
+        savedNews: [
+        req.body
+        ]
       }
     }
   )
