@@ -7,7 +7,10 @@ class Saved extends Component {
     console.log(this.props);
     API.getSavedArticles()
       .then(res => {
-        console.log(res);
+        // console.log(res.data.savedNews);
+        res.data.map((el) => {
+          console.log(el.savedNews)
+        })
       })
   }
   render() {
