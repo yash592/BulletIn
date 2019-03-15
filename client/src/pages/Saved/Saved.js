@@ -3,8 +3,15 @@ import API from "../../utils/API"
 
 
 class Saved extends Component {
+
+  constructor(props) {
+    super(props)
+    console.log(props.auth.id);
+  }
+
+
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     API.getSavedArticles()
       .then(res => {
         // console.log(res.data.savedNews);
@@ -14,6 +21,7 @@ class Saved extends Component {
       })
   }
   render() {
+    console.log(this.props);
     return (
       <div>saved page!!</div>
     )
