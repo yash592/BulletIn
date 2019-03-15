@@ -9,7 +9,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    console.log('got to user create', req.body, 'props', this.props);
+    console.log('got to user create', req.body);
     const user = {
       name: req.body.nickname,
       email: req.body.name,
@@ -17,8 +17,17 @@ module.exports = {
       picture: req.body.picture,
       savedNews: []
     }
-    db.users.create(user)
-      .then(dbArticle => res.json(dbArticle))
+    console.log(db.users.find({name: user.name}).count());
+    db.users.count({ name: user.name})
+      .then(count => {
+        console.log(count);
+        if(count >= 1) {
+          console.log('user exists');
+        } else if (count === 0) {
+          db.users.create(user)
+            .then(dbArticle => res.json(dbArticle))
+        }
+      })
   },
   update: function(req, res) {
     console.log('got to user update', req.body, req.params.id);
