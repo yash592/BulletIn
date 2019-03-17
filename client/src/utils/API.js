@@ -22,6 +22,11 @@ export default {
     console.log('got to saveUserNews', story, userID);
     return axios.put("/api/user/" + userID, story).then(console.log('done'))
   },
+  deleteUserNews: function(story, user) {
+    console.log('got to delete user news' ,story, user);
+    return axios.put("/api/user/"+user, story)
+      .then(console.log('done'))
+  },
   getSavedUsers: function() {
     console.log('got to saved user');
     return axios.get("/api/user")
