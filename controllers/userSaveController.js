@@ -3,7 +3,7 @@ const db = require('../models');
 
 module.exports = {
   getSavedUsers: function(req, res) {
-    console.log('got to getsaveduser');
+    // console.log('got to getsaveduser');
     db.users.find({})
       .then(savedUsers => res.json(savedUsers))
       .catch(err => res.status(422).json(err))
@@ -43,7 +43,7 @@ module.exports = {
   .then(userUpdate => console.log(userUpdate))
   },
   getUserSavedNews: function(req, res) {
-    db.users.findAll({})
+    db.users.find({name: req.params.saved})
       .then(savedNews => res.json(savedNews))
   }
 }

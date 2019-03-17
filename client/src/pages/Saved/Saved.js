@@ -7,12 +7,18 @@ class Saved extends Component {
   constructor(props) {
     super(props)
     console.log(props.auth.id);
+    this.state={
+      user: props.auth.id
+    }
   }
 
 
   componentDidMount() {
-    // console.log(this.props);
-    API.getSavedArticles()
+    const user = localStorage.getItem('user')
+    console.log(user);
+
+
+    API.getSavedArticles(user)
       .then(res => {
         // console.log(res.data.savedNews);
         res.data.map((el) => {
@@ -21,7 +27,7 @@ class Saved extends Component {
       })
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>saved page!!</div>
     )

@@ -14,9 +14,6 @@ export default {
    .header("Content-Type", "application/json")
    .send({"url":link,"text":"","sentnum":5})
   },
-  getSavedArticles: function() {
-    return axios.get("/api/user")
-  },
   saveUser: function(user) {
     console.log(user);
     return axios.post("/api/user", user).then(console.log('done'))
@@ -28,5 +25,9 @@ export default {
   getSavedUsers: function() {
     console.log('got to saved user');
     return axios.get("/api/user")
+  },
+  getSavedArticles: function(user) {
+    console.log('user from API.js', user);
+    return axios.get("/api/user/" + user)
   }
 };

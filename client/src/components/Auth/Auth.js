@@ -79,6 +79,8 @@ export default class Auth {
     this.userImage = authResult.idTokenPayload.picture;
     this.name = authResult.idTokenPayload.name.split(' ', 1);
     this.id = authResult.idTokenPayload.nickname;
+    localStorage.setItem('user', this.id)
+
 
 
     // navigate to the home route
