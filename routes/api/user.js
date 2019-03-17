@@ -6,8 +6,12 @@ const userSaveController = require('../../controllers/userSaveController');
 router
   .route("/")
   .get(userSaveController.getSavedUsers)
-  .get(userSaveController.getUserSavedNews)
   .post(userSaveController.create)
+
+router
+  .route("/:saved")
+  .get(userSaveController.getUserSavedNews)
+
 
 router
   .route("/:id")

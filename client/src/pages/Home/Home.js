@@ -28,6 +28,9 @@ class Home extends Component {
       pageLoading: true,
       gistLoading: true
     }
+    localStorage.setItem('user', this.state.user)
+    console.log(localStorage);
+
     // console.log(this.state);
   }
 
@@ -60,6 +63,7 @@ class Home extends Component {
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
+
   }
 
   notify = () => {
