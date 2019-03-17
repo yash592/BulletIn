@@ -16,6 +16,7 @@ router
 router
   .route("/:id")
   .put(userSaveController.update)
+  .delete(userSaveController.delete)
 
 
 module.exports = router;

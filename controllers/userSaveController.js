@@ -25,7 +25,8 @@ module.exports = {
           console.log('user exists');
         } else if (count === 0) {
           db.users.create(user)
-            .then(dbArticle => res.json(dbArticle))
+            .then(user => res.json(user))
+            .catch(err => res.status(422).json(err))
         }
       })
   },
@@ -40,10 +41,24 @@ module.exports = {
       }
     }
   )
-  .then(userUpdate => console.log(userUpdate))
+  .then(userUpdate => res.json(userUpdate))
+  .catch(err => res.status(422).json(err))
+  },
+  delete: function(req, res) {
+    console.log('got to delete controller', req.params.id, req.body);
+    db.users.update(
+       { name: req.params.id },
+       { $pull: {
+         savedNews: { url:  req.body}
+       }
+      }
+    )
+    .then(userNewsDelete => res.json(userNewsDelete))
+    .catch(err => res.status(422).json(err))
   },
   getUserSavedNews: function(req, res) {
     db.users.find({name: req.params.saved})
-      .then(savedNews => res.json(savedNews))
+      .then(savedNews => res.json(savedNews['0']))
+      .catch(err => res.status(422).json(err))
   }
 }

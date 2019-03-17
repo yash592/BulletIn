@@ -146,7 +146,7 @@ class Home extends Component {
               key={news.url}
               _id={news.url}
               description={news.description}
-              image={news.urlToImage}
+              image={news.urlToImage ? news.urlToImage : 'https://i.imgur.com/SB0VyTQ.png'}
               source={news.source.name}
               title={news.title}
               summary={news.url === this.state.summaryUrl ? this.state.summary: ''}
