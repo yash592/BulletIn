@@ -47,7 +47,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         API.saveUser(authResult.idTokenPayload);
-        history.replace('/home')
+        history.replace('/')
       } else if (err) {
         history.replace('/');
         console.log(err);
@@ -84,7 +84,7 @@ export default class Auth {
 
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
 
   }
 
@@ -112,7 +112,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn', 'user');
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
   }
 
   isAuthenticated() {

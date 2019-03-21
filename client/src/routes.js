@@ -20,7 +20,7 @@ export const mainRoutes = () => {
   return (
     <Router history={history}>
       <div>
-          <Route exact path="/home" render={(props) =>  <Home auth={auth} {...props}/>} />
+          <Route exact path="/" render={(props) =>  <Home auth={auth} {...props}/>} />
           <Route path="/saved" render={(props) => <Saved auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
               handleAuthentication(props);
