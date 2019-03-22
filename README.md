@@ -9,7 +9,11 @@ v1 - App works ok locally. I'm aware of Heroku sign in problems and I'm trying t
 ```
 
 ```
-v2 - In development
+v2 - Heroku sign in has bee fixed! You can now save articles to your profile and duplicate saves do not show up on the saved page
+```
+
+```
+v3 - In development - Delete articles and possibly new UI? 🤔 
 ```
 
 
