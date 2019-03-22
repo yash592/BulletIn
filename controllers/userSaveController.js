@@ -31,16 +31,29 @@ module.exports = {
       })
   },
   update: function(req, res) {
-    console.log('got to user update', req.body, req.params.id);
-    db.users.update(
-      { name: req.params.id},
-      {$push :{
-        savedNews: [
-        req.body
-        ]
-      }
+    console.log('got to user update', req.body, req.params.id, req.body.url);
+    db.users.find({"name": req.params.id, "savedNews": { $elemMatch: {"url" : req.body.url}}})
+    .then(res => {
+      console.log(res);
+      if(!res.length) {
+        console.log("updating");
+        db.users.updateOne(
+          { name: req.params.id},
+          {$push :{
+            savedNews: [
+            req.body
+            ]
+          }
+        }
+      ).then((res)=> console.log(res))
+    } else {
+      console.log("Already exists")
     }
-  )
+    })
+
+
+  // db.users.find({"name": "yash592", "savedNews": { $elemMatch: {"url" : "https://www.usatoday.com/story/money/2019/03/17/kroger-ends-unmanned-vehicle-grocery-delivery-pilot-program-arizona/3194604002/"} }})
+
   .then(userUpdate => res.json(userUpdate))
   .catch(err => res.status(422).json(err))
   },
@@ -60,5 +73,6 @@ module.exports = {
     db.users.find({name: req.params.saved})
       .then(savedNews => res.json(savedNews['0']))
       .catch(err => res.status(422).json(err))
+
   }
 }
