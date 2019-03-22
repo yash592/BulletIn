@@ -50,6 +50,7 @@ class Home extends Component {
   // API call to display trending news
 
   componentDidMount() {
+    console.log(this.props);
     API.getArticles()
       .then(res => {
         this.setState({
@@ -75,13 +76,15 @@ class Home extends Component {
 
   handleLikeClick(key) {
     console.log(this.props.isAuthenticated);
-    if(!this.state.user) {
+    let user = localStorage.getItem("user")
+    console.log(user);
+    if(localStorage.getItem("user")==="undefined") {
       this.login()
     } else {
       console.log('save clicked', key );
       const story = this.state.news.find((stories) => stories.url === key)
       console.log(story, this.state.user);
-      API.saveUserNews(story, this.state.user);
+      API.saveUserNews(story, user).then(res => {console.log(res);});
       this.notify();
     }
   }
