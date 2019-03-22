@@ -47,7 +47,11 @@ module.exports = {
         }
       ).then((res)=> console.log(res))
     } else {
-      console.log("Already exists")
+      console.log("already exists");
+      const message = {message : "Already exists"}
+      const msg = JSON.stringify(message)
+      console.log(msg);
+      res.json(msg)
     }
     })
 
@@ -66,7 +70,7 @@ module.exports = {
        }
       }
     )
-    .then(userNewsDelete => res.json(userNewsDelete))
+    .then(userNewsDelete => console.log(userNewsDelete))
     .catch(err => res.status(422).json(err))
   },
   getUserSavedNews: function(req, res) {
