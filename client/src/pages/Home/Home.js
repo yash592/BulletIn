@@ -77,7 +77,7 @@ class Home extends Component {
   handleLikeClick(key) {
     // console.log(this.props.isAuthenticated);
     let user = localStorage.getItem("user")
-    // console.log(user);
+    console.log(user);
     if(localStorage.getItem("user")==="undefined") {
       this.login()
     } else {
