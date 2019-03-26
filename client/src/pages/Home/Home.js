@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import {Button, Icon, Card, CardTitle } from 'react-materialize'
+import { Icon, Card, CardTitle } from 'react-materialize'
 import Nav from "../../components/Nav";
 import NewsCard from "../../components/NewsCard";
 import Loading from "../../components/Loading";
+import Button from "../../components/Button";
+
+import Input from "../../components/Input";
 import API from "../../utils/API"
 import ButtonUI from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
@@ -12,6 +15,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import _ from 'lodash';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 // Home component where all the top headlines are rendered
 
@@ -100,6 +104,12 @@ class Home extends Component {
       })
   }
 
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+     console.log('do validate');
+   }
+  }
+
 
   render() {
 
@@ -108,7 +118,8 @@ class Home extends Component {
       (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
         <div style={{height: '35%'}}>
-          <Nav  />
+          <Nav/>
+
 
           {
             !isAuthenticated() && (
@@ -132,17 +143,18 @@ class Home extends Component {
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                 <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved</ButtonUI>
-
-
                 </div>
               </div>
 
               // <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}> </ButtonUI>
             )
           }
-
         </div>
+
+        <Input onKeyPress={this.onKeyPress.bind(this)}/>
+
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
+
           {this.state.news.map(news => (
 
             <NewsCard
