@@ -30,7 +30,8 @@ class Home extends Component {
       userID: '',
       user: props.auth.id, //
       pageLoading: true,
-      gistLoading: true
+      gistLoading: true,
+      value: ''
     }
     localStorage.setItem('user', this.state.user)
     console.log(localStorage);
@@ -104,10 +105,19 @@ class Home extends Component {
       })
   }
 
-  onKeyPress(e) {
-    if (e.key === 'Enter') {
-     console.log('do validate');
-   }
+  handleChange = event => {
+    const {name,value} = event.target
+    this.setState({
+      value: event.target.value
+    })
+    console.log(this.state);
+  }
+
+  handleSearch = event => {
+    event.preventDefault();
+    console.log('submitted');
+
+    console.log(this.state.value);
   }
 
 
@@ -151,7 +161,11 @@ class Home extends Component {
           }
         </div>
 
-        <Input onKeyPress={this.onKeyPress.bind(this)}/>
+        <Input
+          value={this.state.value}
+          handleChange={this.handleChange}
+          handleSearch={this.handleSearch}
+        />
 
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
 
