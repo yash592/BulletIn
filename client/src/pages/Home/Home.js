@@ -56,6 +56,18 @@ class Home extends Component {
 
   componentDidMount() {
     console.log(this.props);
+    this.getArticles();
+    const { renewSession } = this.props.auth;
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      renewSession();
+    }
+
+  }
+
+
+
+
+  getArticles = () => {
     API.getArticles()
       .then(res => {
         this.setState({
@@ -65,15 +77,26 @@ class Home extends Component {
         })
         console.log(this.state);
       });
-    const { renewSession } = this.props.auth;
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
+  }
 
+  getArticlesBySearchTerm = event => {
+    event.preventDefault();
+    console.log(this.state.value);
+    const searchTerm = this.state.value
+    API.getArticlesBySearchTerm(searchTerm)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          news: res.data.articles,
+          pageLoading: false,
+          user: this.props.auth.id
+        })
+        console.log(this.state.news);
+      })
   }
 
   notify = () => {
-    console.log('gg');
+    // console.log('gg');
      toast.warning("Bookmarked!", {
        position: toast.POSITION.TOP_RIGHT
      });
@@ -108,17 +131,12 @@ class Home extends Component {
   handleChange = event => {
     const {name,value} = event.target
     this.setState({
-      value: event.target.value
+    value: event.target.value
     })
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  handleSearch = event => {
-    event.preventDefault();
-    console.log('submitted');
 
-    console.log(this.state.value);
-  }
 
 
   render() {
@@ -127,10 +145,8 @@ class Home extends Component {
     return (
       (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
+      <Nav/>
         <div style={{height: '35%'}}>
-          <Nav/>
-
-
           {
             !isAuthenticated() && (
               <ButtonUI color="primary" onClick={this.login.bind(this)}>Login</ButtonUI>
@@ -164,7 +180,7 @@ class Home extends Component {
         <Input
           value={this.state.value}
           handleChange={this.handleChange}
-          handleSearch={this.handleSearch}
+          handleSearch={this.getArticlesBySearchTerm}
         />
 
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
