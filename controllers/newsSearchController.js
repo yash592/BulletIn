@@ -4,6 +4,7 @@ const axios = require('axios');
 module.exports = {
   // topNews by country
   findAll: function(req, res) {
+    console.log('findall');
 
     let url = 'https://newsapi.org/v2/top-headlines?country=us&pageSize=100&apiKey=513740817e1e424cb4406d9e434de94f'
     axios.get(url)
@@ -11,6 +12,11 @@ module.exports = {
         res.json(response.data.articles)
       })
       .catch(err => res.status(422).json(err))
+  },
+
+  findAllBySearchTerm: function(req, res) {
+    console.log('find balakot', req.params);
+
   }
 
 //   // topNews by category - politics

@@ -55,6 +55,8 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
+  
+
 
 
   render() {
