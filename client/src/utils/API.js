@@ -10,7 +10,7 @@ export default {
   },
   getArticlesBySearchTerm: function(searchTerm) {
     console.log('get searchTerm', searchTerm);
-    let url = `https://newsapi.org/v2/everything?q=${searchTerm}&pageSize=100&sortBy=publishedAt&apiKey=513740817e1e424cb4406d9e434de94f`
+    let url = `https://newsapi.org/v2/top-headlines?q=${searchTerm}&pageSize=100&sortBy=publishedAt&apiKey=513740817e1e424cb4406d9e434de94f`
     console.log(url);
     return axios.get(url)
   },
