@@ -78,6 +78,9 @@ function SearchAppBar(props) {
 
             </div>
             <InputBase
+              value={props.value}
+              onChange={props.handleChange}
+              onKeyPress={props.onKeyPress}
               placeholder="Search…"
               margin='dense'
               classes={{
