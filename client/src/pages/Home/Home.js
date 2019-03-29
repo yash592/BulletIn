@@ -133,7 +133,24 @@ class Home extends Component {
     this.setState({
     value: event.target.value
     })
-    // console.log(this.state);
+    console.log(this.state);
+  }
+
+  onKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      console.log('enter!');
+      const searchTerm = this.state.value
+      API.getArticlesBySearchTerm(searchTerm)
+        .then(res => {
+          console.log(res);
+          this.setState({
+            news: res.data.articles,
+            pageLoading: false,
+            user: this.props.auth.id
+          })
+          console.log(this.state.news);
+        })
+    }
   }
 
 
@@ -145,7 +162,12 @@ class Home extends Component {
     return (
       (this.state.pageLoading) ? <Loading /> :
       <React.Fragment>
-      <Nav/>
+      <Nav
+        value={this.state.value}
+        handleChange={this.handleChange}
+        handleSearch={this.getArticlesBySearchTerm}
+        onKeyPress={this.onKeyPress}
+      />
         <div style={{height: '35%'}}>
           {
             !isAuthenticated() && (
@@ -171,17 +193,9 @@ class Home extends Component {
                 <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}>Saved</ButtonUI>
                 </div>
               </div>
-
-              // <ButtonUI color='inherit' onClick={this.goTo.bind(this, 'saved')}> </ButtonUI>
             )
           }
-        </div>
-
-        <Input
-          value={this.state.value}
-          handleChange={this.handleChange}
-          handleSearch={this.getArticlesBySearchTerm}
-        />
+        </div>     
 
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
 
