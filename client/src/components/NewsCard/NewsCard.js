@@ -55,7 +55,7 @@ class NewsCard extends React.Component {
     console.log('expanded');
   };
 
-  
+
 
 
 
@@ -75,7 +75,7 @@ class NewsCard extends React.Component {
           title="news image"
         />
         <CardContent>
-          <Typography component="p">
+          <Typography component="p" style={{fontSize: '14px'}}>
             {this.props.description}
           </Typography>
         </CardContent>
@@ -102,7 +102,7 @@ class NewsCard extends React.Component {
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph><a href={this.props._id} target='_blank'>{this.props._id}</a></Typography>
-            <Typography paragraph>
+            <Typography paragraph style={{fontSize: '14px'}}>
             {this.props.summary}
             </Typography>
           </CardContent>

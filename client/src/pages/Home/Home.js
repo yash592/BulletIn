@@ -167,6 +167,8 @@ class Home extends Component {
         handleChange={this.handleChange}
         handleSearch={this.getArticlesBySearchTerm}
         onKeyPress={this.onKeyPress}
+        picture={this.props.auth.userImage}
+
       />
         <div style={{height: '35%'}}>
           {
@@ -178,12 +180,10 @@ class Home extends Component {
             isAuthenticated() && (
               <div style={{marginTop: '2%'}}>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <img src={this.props.auth.userImage} style={{width: 150, height: 150, borderRadius: 100}}/>
+                  <img src={this.props.auth.userImage} style={{width: 150, height: 150, borderRadius: 100,  boxShadow: `2px 0px 4px grey`}}/>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 44, color: 'black'}}>Welcome back {this.props.auth.name}! </p>
-
-
+                  <p style={{fontFamily: "Roboto", fontWeight: 400, fontSize: 30, color: 'black'}}>Welcome back {this.props.auth.name}! </p>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                 <ButtonUI color="secondary" onClick={this.logout.bind(this)}>Logout</ButtonUI>
@@ -195,7 +195,7 @@ class Home extends Component {
               </div>
             )
           }
-        </div>     
+        </div>
 
         <div style={{display: 'flex', flexWrap: 'wrap', padding: 20, alignItems: 'center', justifyContent: 'center' }}>
 
