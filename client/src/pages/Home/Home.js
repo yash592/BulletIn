@@ -119,8 +119,9 @@ class Home extends Component {
 
   handleDetailClick = link => {
     API.summarize(link)
-      .then((res) => {
-        const gist = _.map(res.raw_body.sentences)
+      .then(res => {
+        console.log(res.body.sentences);
+        const gist = _.map(res.body.sentences)
         this.setState({
           summary: gist,
           summaryUrl: link,
