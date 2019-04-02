@@ -15,10 +15,10 @@ export default {
     return axios.get(url)
   },
   summarize: function(link) {
-    return unirest.post("https://textanalysis-text-summarization.p.rapidapi.com/text-summarizer")
-   .header("X-RapidAPI-Key", "ykuhaOwNktmshrawXHrZYZyBNzuXp1WgLSajsnL5opgjvLJXud")
-   .header("Content-Type", "application/json")
-   .send({"url":link,"text":"","sentnum":5})
+    console.log(link);
+    return unirest.get("https://aylien-text.p.rapidapi.com/summarize?url="+ link + "&sentences_number=5")
+   .header("X-RapidAPI-Key", "ODvwbEGCc8mshFxn58WHl2tFdqkfp1eFXRXjsnlfTlgUdF0qML")
+   
   },
   saveUser: function(user) {
     console.log(user);
