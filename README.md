@@ -13,7 +13,11 @@ v2 - Heroku sign in has bee fixed! You can now save articles to your profile and
 ```
 
 ```
-v3 - In development - Delete articles and possibly new UI? 🤔 
+v3 - Faster summarization. Search feature. UI changes.  🚀
+```
+
+```
+v4 - In development. Newer features plus deletion from profile 🔜
 ```
 
 
