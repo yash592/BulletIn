@@ -17,7 +17,11 @@ v3 - Faster summarization. Search feature. UI changes.  🚀
 ```
 
 ```
-v4 - In development. Newer features plus deletion from profile 🔜
+v4 - Full CRUD app!
+```
+
+```
+v5 - In development. UI changes. Headlines by country, categories etc! 🔜
 ```
 
 
