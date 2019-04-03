@@ -4,8 +4,6 @@ const axios = require('axios');
 module.exports = {
   // topNews by country
   findAll: function(req, res) {
-    console.log('findall');
-
     let url = 'https://newsapi.org/v2/top-headlines?country=in&pageSize=100&apiKey=513740817e1e424cb4406d9e434de94f'
     axios.get(url)
       .then(response => {
