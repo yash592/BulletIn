@@ -75,8 +75,10 @@ class Saved extends Component {
     const user = localStorage.getItem('user');
     console.log(story, user);
     API.deleteUserNews(story, user)
-    this.delNotify();
-    this.loadArticles();
+      .then(res => {
+        console.log(res);
+      })
+
 
   }
 
@@ -84,7 +86,7 @@ class Saved extends Component {
     console.log('Summarizing');
     API.summarize(link)
       .then((res) => {
-        const gist = _.map(res.raw_body.sentences)
+        const gist = _.map(res.body.sentences)
         this.setState({
           summary: gist,
           summaryUrl: link,

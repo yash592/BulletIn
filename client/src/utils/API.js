@@ -18,7 +18,7 @@ export default {
     console.log(link);
     return unirest.get("https://aylien-text.p.rapidapi.com/summarize?url="+ link + "&sentences_number=5")
    .header("X-RapidAPI-Key", "ODvwbEGCc8mshFxn58WHl2tFdqkfp1eFXRXjsnlfTlgUdF0qML")
-   
+
   },
   saveUser: function(user) {
     console.log(user);
@@ -30,7 +30,7 @@ export default {
   },
   deleteUserNews: function(story, user) {
     console.log('got to delete user news', story, user);
-    return axios.put("/api/user/"+user, story)
+    return axios.put("/api/userDelete/"+user, story)
   },
   getSavedUsers: function() {
     console.log('got to saved user');
