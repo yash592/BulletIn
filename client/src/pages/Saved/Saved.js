@@ -70,16 +70,15 @@ class Saved extends Component {
 
   handleDeleteClick = link => {
 
-    console.log('delete clicked', link);
     const story = this.state.news.find(stories => stories.url === link)
     const user = localStorage.getItem('user');
-    console.log(story, user);
+
     API.deleteUserNews(story, user)
       .then(res => {
         console.log(res);
       })
-
-
+      .then(this.delNotify())
+      .then(this.loadArticles())
   }
 
   handleDetailClick = link => {

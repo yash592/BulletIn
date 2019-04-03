@@ -62,11 +62,11 @@ module.exports = {
   .catch(err => res.status(422).json(err))
   },
   delete: function(req, res) {
-    console.log('got to delete controller', req.params.id, req.body);
+    console.log('got to delete controller', 'url', req.body.url);
     db.users.update(
        { name: req.params.id },
        { $pull: {
-         savedNews: { url:  req.body}
+         savedNews: { url:  req.body.url}
        }
       }
     )
