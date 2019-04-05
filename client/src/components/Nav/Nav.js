@@ -16,11 +16,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ButtonUI from '@material-ui/core/Button';
 
 
 const styles = theme => ({
   root: {
     width: '100%',
+    height:  '100%'
   },
   grow: {
     flexGrow: 1,
@@ -105,6 +107,7 @@ class PrimarySearchAppBar extends React.Component {
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    console.log(this.props);
 
     const renderMenu = (
       <Menu
@@ -114,8 +117,8 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Login</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Saved</MenuItem>
       </Menu>
     );
 
@@ -141,9 +144,6 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               <img src={"https://i.imgur.com/Q3JrDqN.png"} style={{width: '10%'}}/>
             </Typography>
@@ -162,6 +162,9 @@ class PrimarySearchAppBar extends React.Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+            <ButtonUI>Login</ButtonUI>
+            <ButtonUI>Saved</ButtonUI>
+
 
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
@@ -170,7 +173,9 @@ class PrimarySearchAppBar extends React.Component {
                 color="inherit"
               >
                 <AccountCircle />
+
               </IconButton>
+
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">

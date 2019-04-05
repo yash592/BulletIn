@@ -4,7 +4,6 @@ import Nav from "../../components/Nav";
 import NewsCard from "../../components/NewsCard";
 import Loading from "../../components/Loading";
 import Button from "../../components/Button";
-
 import Input from "../../components/Input";
 import API from "../../utils/API"
 import ButtonUI from '@material-ui/core/Button';
@@ -52,7 +51,7 @@ class Home extends Component {
     this.props.auth.logout();
   }
 
-  // API call to display trending news
+
 
   componentDidMount() {
     console.log(this.props);
@@ -65,7 +64,7 @@ class Home extends Component {
   }
 
 
-
+// API call to display trending news
 
   getArticles = () => {
     API.getArticles()
@@ -78,6 +77,8 @@ class Home extends Component {
         console.log(this.state);
       });
   }
+
+  // API call to display news by searchterm
 
   getArticlesBySearchTerm = event => {
     event.preventDefault();
@@ -162,15 +163,15 @@ class Home extends Component {
     const { isAuthenticated } = this.props.auth;
     return (
       (this.state.pageLoading) ? <Loading /> :
-      <React.Fragment>
-      <Nav
-        value={this.state.value}
-        handleChange={this.handleChange}
-        handleSearch={this.getArticlesBySearchTerm}
-        onKeyPress={this.onKeyPress}
-        picture={this.props.auth.userImage}
-
-      />
+      <div>
+        <div style={{width: '100%', height: '10%'}}>
+          <Nav
+            value={this.state.value}
+            handleChange={this.handleChange}
+            handleSearch={this.getArticlesBySearchTerm}
+            onKeyPress={this.onKeyPress}
+          />
+        </div>
         <div style={{height: '35%'}}>
           {
             !isAuthenticated() && (
@@ -217,7 +218,7 @@ class Home extends Component {
         ))}
         <ToastContainer autoClose={2000} />
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }
