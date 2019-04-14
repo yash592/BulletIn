@@ -79,6 +79,8 @@ const styles = theme => ({
   },
 });
 
+
+
 class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
