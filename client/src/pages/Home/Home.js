@@ -43,6 +43,7 @@ class Home extends Component {
   }
 
   login() {
+    console.log("login press!");
     this.props.auth.login();
   }
 
@@ -160,14 +161,13 @@ class Home extends Component {
             handleChange={this.handleChange}
             handleSearch={this.getArticlesBySearchTerm}
             onKeyPress={this.onKeyPress}
+            user={this.state.user}
+            onLogin={this.login.bind(this)}
+            onLogout={this.logout.bind(this)}
+            goToSaved={this.goTo.bind(this, "saved")}
           />
         </div>
         <div style={{ height: "35%" }}>
-          {!isAuthenticated() && (
-            <ButtonUI color="primary" onClick={this.login.bind(this)}>
-              Login
-            </ButtonUI>
-          )}
           {isAuthenticated() && (
             <div style={{ marginTop: "2%" }}>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -190,21 +190,8 @@ class Home extends Component {
                     color: "black"
                   }}
                 >
-                  Welcome back {this.props.auth.name}!{" "}
+                  Welcome back {this.props.auth.name}!
                 </p>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <ButtonUI color="secondary" onClick={this.logout.bind(this)}>
-                  Logout
-                </ButtonUI>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <ButtonUI
-                  color="inherit"
-                  onClick={this.goTo.bind(this, "saved")}
-                >
-                  Saved
-                </ButtonUI>
               </div>
             </div>
           )}
