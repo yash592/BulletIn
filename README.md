@@ -21,7 +21,11 @@ v4 - Full CRUD app!
 ```
 
 ```
-v5 - In development. UI changes. Headlines by country, categories etc! 🔜
+v5 - Fixed some searchbar and search functionality issues
+```
+
+```
+v6 - In development. UI changes. Headlines by country, categories etc! 🔜
 ```
 
 
